@@ -78,10 +78,11 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'django',
-        'USER': 'odokxgecqo',
-        'PASSWORD': '14I6028FO6YC57AS$',
+        'USER': 'Person1',
+        'PASSWORD': 'DjangoAzure123!',
         # 'HOST': 'your_mysql_server_name.mysql.database.azure.com',
-        'HOST': 'django-server.mysql.database.azure.com',
+        # 'HOST': 'django-server.mysql.database.azure.com',
+        'HOST': 'localhost',
         'PORT': '3306'
     }
 }

@@ -1,10 +1,11 @@
 import os
-from .settings import *
+from .settings import *  # noqa: F403
 from .settings import BASE_DIR
 
-SECRET_KEY = os.environ['SECRET']
-ALLOWED_HOSTs=[os.environ['WEBSITE_HOSTNAME']]
-CSRF_TRUSTED_ORIGINS=['http://'+ os.environ['WEBSITE_HOSTNAME']]
+SECRET_KEY = os.getenv['SECRET']
+# ALLOWED_HOSTs=[os.getenv['WEBSITE_HOSTNAME']]
+ALLOWED_HOSTS = ['*']
+CSRF_TRUSTED_ORIGINS=['https://'+ os.getenv['WEBSITE_HOSTNAME']]
 DEBUG = False
 
 MIDDLEWARE = [
@@ -19,17 +20,25 @@ MIDDLEWARE = [
 ]
 
 
-STATICFILES_STORAGE='whitenoise.storage.CompressedManifestStaticFileStorage'
+STATICFILES_STORAGE='whitenoise.storage.CompressedManifestStaticFilesStorage'
 STATIC_ROOT=os.path.join(BASE_DIR, 'staticfiles')
 
-
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': '',
+#         'HOST': '',
+#         'USER': '',
+#         'PASSWORD': '',
+#     }
+# }
 
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': os.environ['AZURE_MYSQL_NAME'],
-        'HOST': os.environ['AZURE_MYSQL_HOST'],
-        'USER': os.environ['AZURE_MYSQL_USER'],
-        'PASSWORD': os.environ['AZURE_MYSQL_PASSWORD'],
+        'NAME': os.getenv['AZURE_MYSQL_NAME'],
+        'HOST': os.getenv['AZURE_MYSQL_HOST'],
+        'USER': os.getenv['AZURE_MYSQL_USER'],
+        'PASSWORD': os.getenv['AZURE_MYSQL_PASSWORD'],
     }
 }
